@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - SaludApp</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="center">
+    <form id="register-form" class="card">
+      <h2>Crear Cuenta</h2>
+      <input type="text" id="name" placeholder="Nombre completo" required>
+      <input type="number" id="age" placeholder="Edad" required>
+      <input type="email" id="email" placeholder="Correo electrónico" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <button type="submit" class="btn">Registrarse</button>
+      <p><a href="login.html">Ya tengo cuenta</a></p>
+    </form>
+  </main>
+
+  <script src="main.js"></script>
+  <script>
+    document.getElementById('register-form').addEventListener('submit', handleRegister);
+  </script>
+</body>
+</html>

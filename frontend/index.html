@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio - SaludApp</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1 class="title">SaludApp</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="daily-log.html">Registro Diario</a>
+      <a href="register.html">Historial</a>
+      <a href="plans.html">Planes</a>
+      <a href="favorites.html">Favoritos</a>
+      <a href="login.html" id="logout-btn">Salir</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="tip-container">
+      <h2>Tip del Día</h2>
+      <p id="tip-text">Cargando tip...</p>
+      <small id="tip-category"></small><br>
+      <button id="fav-btn" class="btn">Marcar como favorito</button>
+    </section>
+  </main>
+
+  <script src="main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadTipOfTheDay();
+    });
+  </script>
+</body>
+</html>

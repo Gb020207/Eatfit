@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro Diario - SaludApp</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Registro Diario</h1>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="history.html">Historial</a>
+    </nav>
+  </header>
+
+  <main>
+    <form id="daily-form" class="card">
+      <h2>Hoy</h2>
+      <input type="date" id="date" required>
+      <textarea id="meals" placeholder="Comidas" required></textarea>
+      <input type="number" id="water" placeholder="Agua (ml)" required>
+      <input type="text" id="exercise" placeholder="Ejercicio" required>
+      <input type="number" id="sleep" placeholder="Sueño (horas)" required>
+      <button type="submit" class="btn">Guardar</button>
+    </form>
+  </main>
+
+  <script src="main.js"></script>
+  <script>
+    document.getElementById('daily-form').addEventListener('submit', saveDailyLog);
+  </script>
+</body>
+</html>

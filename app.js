@@ -6,6 +6,7 @@ import router from './src/routes/user.routes.js';
 import routerPlans from './src/routes/plan.routes.js';
 import routerPost from './src/routes/post.routes.js';
 import routerLog from './src/routes/daily.routes.js';
+import routerTip from './src/routes/tip.routes.js';
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use("/api/users", router);
 app.use("/api/plans", routerPlans);
 app.use("/api/post", routerPost);
 app.use("/api/log", routerLog);
+app.use("/api/tip", routerTip);
 
 connectDB().then(() => {
   app.listen(PORT, () => {

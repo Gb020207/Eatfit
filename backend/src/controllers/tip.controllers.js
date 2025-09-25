@@ -14,6 +14,8 @@ export const getAllTips = async (req, res) => {
 
 // Tip del día: rotativo según fecha
 export const getTipOfTheDay = async (req, res) => {
+   const tip = req.tip; // lo puso el middleware
+  res.json({ tip });
   try {
     const tips = await Tip.findAll({ order: [['id','ASC']] });
     if (!tips.length) return res.status(404).json({ message: 'No hay tips disponibles' });

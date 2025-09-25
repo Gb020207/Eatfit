@@ -1,11 +1,13 @@
 import path from 'path';
 import { fileURLToPath } from 'url';
+import cors from 'cors';
 import express from 'express';
 import router from './backend/src/routes/user.routes.js';
 import routerPlans from './backend/src/routes/plan.routes.js';
 import routerPost from './backend/src/routes/post.routes.js';
 import routerLog from './backend/src/routes/daily.routes.js';
 import routerTip from './backend/src/routes/tip.routes.js';
+import { tipExists } from './backend/src/middleware/tipMiddleware.js';
 import { connectDB } from './backend/src/config/db.js';
 
 
@@ -14,6 +16,7 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 // Servir archivos estáticos (frontend)
 app.use(express.static(path.join(__dirname, './frontend')));

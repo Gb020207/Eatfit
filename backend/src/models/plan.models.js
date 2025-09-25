@@ -12,11 +12,11 @@ export const Plan = sequelize.define('Plan', {
   },
   meals: {
     type: DataTypes.JSON, // Guardamos un JSON con las comidas
-    allowNull: false
+    allowNull: true
   },
   recommendedFor: {
     type: DataTypes.STRING, // Ejemplo: "bajar peso", "ganar masa"
-    allowNull: false
+    allowNull: true
   }
 }, {
   tableName: 'plans',

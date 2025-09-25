@@ -10,6 +10,10 @@ import routerTip from './backend/src/routes/tip.routes.js';
 import { tipExists } from './backend/src/middleware/tipMiddleware.js';
 import { connectDB } from './backend/src/config/db.js';
 
+import { User } from './backend/src/models/user.models.js';
+import { protect } from './backend/src/middleware/authmiddleware.js';
+import routerComent from './backend/src/routes/comment.route.js';
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,13 +31,24 @@ app.use("/api/plans", routerPlans);
 app.use("/api/post", routerPost);
 app.use("/api/log", routerLog);
 app.use("/api/tip", routerTip);
+app.use("/api/comments", routerComent)
 
 // Ruta raíz → frontend
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, './frontend/index.html'));
 });
 
+// Ruta protegida: obtener datos del usuario logueado
+router.get('/me', protect, async (req, res) => {
+  try {
+    const user = await User.findByPk(req.user.id); // req.user.id viene del token
+    res.json(user);
+  } catch (err) {
+    res.status(500).json({ message: "Error al obtener usuario" });
+  }
+});
 app.listen(4000, () => console.log('Servidor corriendo en http://localhost:4000'));
+
 
 
 

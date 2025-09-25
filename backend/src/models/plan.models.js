@@ -17,6 +17,10 @@ export const Plan = sequelize.define('Plan', {
   recommendedFor: {
     type: DataTypes.STRING, // Ejemplo: "bajar peso", "ganar masa"
     allowNull: false
+  },
+  plans: {
+    type: DataTypes.ENUM('free', 'pro', 'elite'),
+    defaultValue: 'free'
   }
 }, {
   tableName: 'plans',

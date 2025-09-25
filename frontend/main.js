@@ -17,7 +17,20 @@ async function handleLogin(e) {
     const data = await res.json();
     if (res.ok) {
       localStorage.setItem('token', data.token);
-      window.location.href = 'index.html';
+
+      // 👉 Redirigir según el plan recibido
+      const plan = data.plan; // el backend debe enviarlo en la respuesta
+      if (plan === 'free') {
+        window.location.href = "free.html";
+      } else if (plan === 'pro') {
+        window.location.href = "pro.html";
+      } else if (plan === 'elite') {
+        window.location.href = "elite.html";
+      } else {
+        // fallback en caso de que no llegue el plan
+        window.location.href = "free.html";
+      }
+
     } else {
       alert(data.message || 'Error al iniciar sesión');
     }
@@ -52,6 +65,7 @@ async function handleRegister(e) {
     alert('Error de conexión con el servidor');
   }
 }
+
 
 // ----------- TIP DEL DÍA -----------
 async function loadTipOfTheDay() {

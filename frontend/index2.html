@@ -91,9 +91,20 @@
         transform: translateY(-2px);
       }
       .btn-ghost {
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: var(--muted);
-      }
+        display: inline-block;
+  margin-top: 1rem;
+  padding: 0.9rem 1.5rem;
+  background: linear-gradient(145deg, #9b1c31, #751227);
+  border: none;
+  border-radius: 0.6rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none; /* quita el subrayado */
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+  
       .stats {
         display: flex;
         gap: 20px;
@@ -350,10 +361,25 @@
             <strong>— Sofía, 20 años</strong>
           </div>
         </div>
-      </div>
-    </section>
 
- <a href="mural.html">ir al mural</a>
+
+     <section> 
+  <div id="mural-interactivo" class="card">
+    <h2>Mural Interactivo</h2>
+    <p>Accede al mural para compartir tus avances y motivarte con la comunidad.</p>
+    <a href="mural.html"class="btn btn-ghost">Ir al Mural</a>
+  </div>
+</section>
+
+
+  
+
+  <script src="main.js"></script>
+  <script>
+    document.getElementById('register-form').addEventListener('submit', handleRegister);
+  </script>
+</body>
+
     <!-- FOOTER -->
     <footer>
       <p>© 2025 EatFit — Todos los derechos reservados</p>

@@ -13,11 +13,7 @@
       --card: #0b1220;
       --radius: 16px;
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: "Inter", system-ui, sans-serif;
       background: var(--bg);
@@ -25,21 +21,9 @@
       line-height: 1.5;
       min-height: 100vh;
     }
-    header {
-      text-align: center;
-      padding: 40px 20px;
-      background: var(--card);
-      border-bottom: 1px solid #1a1f34;
-    }
-    h1 {
-      font-size: clamp(32px, 4vw, 56px);
-      color: var(--accent-2);
-    }
-    main {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
+    header { text-align: center; padding: 40px 20px; background: var(--card); border-bottom: 1px solid #1a1f34; }
+    h1 { font-size: clamp(32px, 4vw, 56px); color: var(--accent-2); }
+    main { max-width: 800px; margin: 40px auto; padding: 0 20px; }
 
     /* Formulario */
     #comment-form {
@@ -64,10 +48,7 @@
       transition: border 0.3s;
     }
     #comment-form input:focus,
-    #comment-form textarea:focus {
-      border-color: var(--accent);
-      outline: none;
-    }
+    #comment-form textarea:focus { border-color: var(--accent); outline: none; }
     #comment-form button {
       background: linear-gradient(90deg, var(--accent), var(--accent-2));
       color: #fff;
@@ -78,31 +59,24 @@
       cursor: pointer;
       transition: transform 0.2s;
     }
-    #comment-form button:hover {
-      transform: translateY(-2px);
-    }
+    #comment-form button:hover { transform: translateY(-2px); }
 
     /* Comentarios */
-    #comments-container {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+    #comments-container { display: flex; flex-direction: column; gap: 16px; }
     .comment-card {
       background: var(--card);
       padding: 18px 20px;
       border-radius: var(--radius);
       box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.5s forwards;
     }
-    .comment-card h3 {
-      margin-bottom: 6px;
-      font-size: 1.1rem;
-      color: var(--accent-2);
-    }
-    .comment-card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.4;
+    .comment-card h3 { margin-bottom: 6px; font-size: 1.1rem; color: var(--accent-2); }
+    .comment-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.4; }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 500px) {
@@ -116,7 +90,7 @@
   <header>
     <h1>Mural de Comentarios</h1>
   </header>
-
+ 
   <main>
     <form id="comment-form">
       <input type="text" id="userName" placeholder="Tu nombre" required>
@@ -129,6 +103,26 @@
     </div>
   </main>
 
-  <script src="mural.js"></script>
+  <script>
+    const form = document.getElementById('comment-form');
+    const commentsContainer = document.getElementById('comments-container');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('userName').value.trim();
+      const text = document.getElementById('commentText').value.trim();
+      if(!name || !text) return;
+
+      // Crear tarjeta de comentario
+      const commentCard = document.createElement('div');
+      commentCard.classList.add('comment-card');
+      commentCard.innerHTML = `<h3>${name}</h3><p>${text}</p>`;
+      commentsContainer.prepend(commentCard); // Aparece arriba
+
+      // Limpiar formulario
+      form.reset();
+    });
+  </script>
 </body>
 </html>

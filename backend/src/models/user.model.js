@@ -2,15 +2,15 @@ import { DataTypes } from 'sequelize';
 import { sequelize } from '../config/db.js';
 import { Plan } from './plan.models.js';
 
-export const User = sequelize.define('User', {
+export const UserModel = sequelize.define('User', {
   name: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true,
   },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
     validate: {
       isEmail: true
     }

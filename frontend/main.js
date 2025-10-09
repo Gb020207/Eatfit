@@ -57,7 +57,7 @@ async function handleRegister(e) {
     const data = await res.json();
     if (res.ok) {
       alert('Usuario registrado correctamente');
-      window.location.href = 'login.html';
+      window.location.href = 'index.html';
     } else {
       alert(data.message || 'Error en el registro');
     }

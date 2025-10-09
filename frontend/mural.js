@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:4000/api/comments";
+const API_URL = "http://localhost:3000/api/comments";
 
 const form = document.getElementById("comment-form");
 const commentsContainer = document.getElementById("comments-container");

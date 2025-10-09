@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>EatFit — Nutrición inteligente para rendimiento</title>
     <style>
       :root {
-        --bg: #0f1724;
-        --accent: #7b1f3a;
-        --accent-2: #ff6b3d;
-        --muted: #9aa4b2;
-        --card: #0b1220;
-        --radius: 16px;
+        --bg: #131212;
+        --accent: #4ade80;
+        --muted: #a1a1aa;
+        --card: #1c1c1e;
+        --radius: 12px;
       }
       * {
         box-sizing: border-box;
@@ -28,18 +27,50 @@
         color: inherit;
         text-decoration: none;
       }
+
+      /* ================================================= */
+      /* CSS PARA LA BARRA DE NAVEGACIÓN                   */
+      /* ================================================= */
+      .navbar {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        padding: 16px 20px;
+        background: rgba(19, 18, 18, 0.8); /* Fondo semi-transparente */
+        backdrop-filter: blur(10px); /* Efecto de desenfoque */
+        z-index: 100;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .nav-logo {
+        font-size: 37px;
+        font-weight: 700;
+      }
+      .nav-actions {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+      }
+      /* =============================================== */
+      /* FIN DEL CSS                                     */
+      /* =============================================== */
+
       header,
       section,
       footer {
-        padding: 80px 20px;
+        padding: 60px 20px;
       }
       .container {
         max-width: 1200px;
         margin: 0 auto;
       }
-      h1,
-      h2,
-      h3 {
+      h1, h2, h3 {
         line-height: 1.1;
       }
       h1 {
@@ -74,6 +105,16 @@
       .hero-right {
         flex: 1 1 400px;
       }
+
+      /* =============================================== */
+      /* CAMBIO REALIZADO AQUÍ                           */
+      /* =============================================== */
+      .hero h1 {
+        font-size: clamp(24px, 3.5vw, 42px); /* Tamaño de letra reducido */
+        line-height: 1.3; /* Espaciado entre líneas mejorado */
+      }
+      /* =============================================== */
+
       .btn {
         display: inline-block;
         padding: 14px 22px;
@@ -83,16 +124,21 @@
         transition: 0.2s;
       }
       .btn-primary {
-        background: linear-gradient(90deg, var(--accent), #5b1230);
-        color: #fff;
-        box-shadow: 0 6px 24px rgba(123, 31, 58, 0.4);
+        background: var(--accent);
+        color: var(--bg);
+        box-shadow: 0 6px 24px rgba(74, 222, 128, 0.3);
       }
       .btn-primary:hover {
         transform: translateY(-2px);
+        filter: brightness(1.1);
       }
       .btn-ghost {
         border: 1px solid rgba(255, 255, 255, 0.2);
         color: var(--muted);
+      }
+       .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
       }
       .stats {
         display: flex;
@@ -119,43 +165,9 @@
         background: var(--card);
         padding: 28px;
         border-radius: var(--radius);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
       }
       .benefit h3 {
         margin-bottom: 10px;
-      }
-
-      /* Planes */
-      .plans {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 28px;
-        margin-top: 40px;
-      }
-      .plan {
-        background: var(--card);
-        padding: 30px;
-        border-radius: var(--radius);
-        text-align: center;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-      }
-      .plan h3 {
-        margin: 14px 0;
-      }
-      .price {
-        font-size: 32px;
-        font-weight: 700;
-        margin: 12px 0;
-      }
-      .plan ul {
-        list-style: none;
-        margin: 20px 0;
-        padding: 0;
-        color: var(--muted);
-        font-size: 15px;
-      }
-      .plan li {
-        margin: 8px 0;
       }
 
       /* Blog */
@@ -169,7 +181,6 @@
         background: var(--card);
         padding: 20px;
         border-radius: var(--radius);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
       }
       .blog-post h3 {
         margin-bottom: 10px;
@@ -185,38 +196,22 @@
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 28px;
         margin-top: 40px;
+        margin-bottom: 40px;
       }
       .testimonial {
         background: var(--card);
         padding: 24px;
         border-radius: var(--radius);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
       }
       .testimonial strong {
         display: block;
         margin-top: 10px;
-        color: var(--accent-2);
-      }
-
-      /* CTA */
-      .cta {
-        text-align: center;
-        padding: 80px 20px;
-        background: linear-gradient(135deg, var(--accent), var(--accent-2));
-        border-radius: var(--radius);
-      }
-      .cta h2 {
-        color: #fff;
-      }
-      .cta p {
-        color: #fff;
-        margin: 20px auto;
-        max-width: 50ch;
+        color: var(--accent);
       }
 
       /* Footer */
       footer {
-        background: #0b1220;
+        background: #000000;
         text-align: center;
         color: var(--muted);
         padding: 40px 20px;
@@ -233,21 +228,47 @@
         .hero-right {
           order: -1;
         }
+        /* Ajuste para botones en móvil */
+        .btn {
+          padding: 12px 18px;
+        }
       }
+
+            /* CTA */
+      .cta {
+        text-align: center;
+        padding: 80px 20px;
+        background: var(--card);
+        border-radius: var(--radius);
+      }
+      .cta h2 {
+        color: #fff;
+      }
+      .cta p {
+        color: var(--muted);
+        margin: 20px auto;
+        max-width: 50ch;
+      }
+
+
     </style>
-  </head>
-  <body>
-    <!-- HERO -->
+</head>
+<body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="#" class="nav-logo"><strong>EatFit</strong></a>
+        <div class="nav-actions">
+          <a href="login.html" class="btn btn-ghost">Iniciar Sesión</a>
+        </div>
+      </div>
+    </nav>
     <header>
       <div class="container hero">
         <div class="hero-left">
-          <h1>EatFit</h1>
-          <p class="lead">
-            EatFit te ayuda a optimizar tu alimentación, elegir planes efectivos
-            y compartir tus avances en una comunidad activa.
-          </p>
+          <h1>Te ayudamos a optimizar tu alimentación, elegir planes efectivos
+            y compartir tus avances en una comunidad activa.</h1>
           <div style="display: flex; gap: 12px; flex-wrap: wrap">
-            <a href="#planes" class="btn btn-primary">Comenzar gratis</a>
+            <a href="register.html" class="btn btn-primary">Comienza grátis</a>
             <a href="#beneficios" class="btn btn-ghost">Saber más</a>
           </div>
           <div class="stats">
@@ -257,16 +278,10 @@
           </div>
         </div>
         <div class="hero-right">
-          <!-- <img
-            src="https://www.gettyimages.es/fotos/alimentacion-saludable"
-            alt="Vista previa alimentación saludable"
-            style="width: 100%; border-radius: var(--radius)"
-          /> -->
-        </div>
+            </div>
       </div>
     </header>
 
-    <!-- BENEFICIOS -->
     <section id="beneficios">
       <div class="container">
         <h2>Beneficios principales</h2>
@@ -297,47 +312,6 @@
       </div>
     </section>
 
-    <!-- PLANES -->
-    <section id="planes">
-      <div class="container">
-        <h2>Elige tu plan</h2>
-        <p class="lead">Empieza gratis, crece a tu ritmo</p>
-        <div class="plans">
-          <div class="plan">
-            <h3>Free</h3>
-            <div class="price">$0</div>
-            <ul>
-              <li>Registro de comidas manual</li>
-              <li>Acceso al mural</li>
-              <li>Recetas básicas</li>
-            </ul>
-            <a href="register.html" class="btn btn-primary">Comenzar</a>
-          </div>
-          <div class="plan">
-            <h3>Pro</h3>
-            <div class="price">$9.99/mes</div>
-            <ul>
-              <li>Planes personalizados</li>
-              <li>Soporte prioritario</li>
-              <li>Blog premium</li>
-            </ul>
-            <a href="register.html" class="btn btn-primary">Suscribirse</a>
-          </div>
-          <div class="plan">
-            <h3>Elite</h3>
-            <div class="price">$19.99/mes</div>
-            <ul>
-              <li>Tutoría nutricional</li>
-              <li>Detección por cámara (beta)</li>
-              <li>Acceso total a recetas premium</li>
-            </ul>
-            <a href="register.html" class="btn btn-primary">Unirme</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BLOG -->
     <section id="blog">
       <div class="container">
         <h2>Últimos artículos</h2>
@@ -368,7 +342,17 @@
       </div>
     </section>
 
-    <!-- TESTIMONIOS -->
+    <section class="cta" id="registro">
+      <div class="container">
+        <h2>Empieza tu transformación hoy</h2>
+        <p>
+          Únete a EatFit gratis y descubre cómo una alimentación inteligente
+          puede cambiar tu vida.
+        </p>
+        <a href="#planes" class="btn btn-primary">Registrarme ahora</a>
+      </div>
+    </section>
+
     <section id="testimonios">
       <div class="container">
         <h2>Lo que dicen nuestros usuarios</h2>
@@ -392,19 +376,6 @@
       </div>
     </section>
 
-    <!-- CTA FINAL -->
-    <section class="cta" id="registro">
-      <div class="container">
-        <h2>Empieza tu transformación hoy</h2>
-        <p>
-          Únete a EatFit gratis y descubre cómo una alimentación inteligente
-          puede cambiar tu vida.
-        </p>
-        <a href="#planes" class="btn btn-primary">Registrarme ahora</a>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
     <footer>
       <p>© 2025 EatFit — Todos los derechos reservados</p>
       <p>
